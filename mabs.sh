@@ -1,6 +1,6 @@
 #!/bin/bash
 
-needPkgs="bspwm sxhkd xorg xorg-xinit firefox"
+needPkgs="sudo bspwm sxhkd xorg xorg-xinit firefox"
 
 if pacman -Qqi dialog >> /dev/null; then
         sleep 1;
@@ -44,6 +44,6 @@ fi
 dialog --title "Installing yay" --infobox "Installing yay AUR package manager." 10 30
 git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si &> /dev/null
+sudo -u makepkg -si &> /dev/null
 
 

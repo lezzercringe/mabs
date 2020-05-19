@@ -1,8 +1,6 @@
 #!/bin/bash
 if pacman -Qqi dialog >> /dev/null; then
-        echo "Dialog is installed..."
 else
-        echo "The package dialog is not installed"
         pacman -Sq --noconfirm dialog >> /dev/null
         if [ $? == 0 ]; then
                 echo "Installed successfuly, starting the script!"
@@ -33,11 +31,11 @@ if [[ $? == 1 ]]; then
         echo "See you next time. Good luck."
 fi
 
-echo "Installing needed packages... Just wait a couple of minutes. " 
-sleep 5;
-pacman -S bspwm sxhkd xorg xorg-xinit firefox > mabs.log 
+dialog --title "Installation" --infobox "Installing needed packages via pacman. Just wait." 10 40
+pacman -S --noconfirm bspwm sxhkd xorg xorg-xinit firefox &> mabs.log 
 if [[ $? == 1 ]]; then
-        echo "Something went wrong with installation. Check mabs.log file and try to fix the problem manually. Then restart the script."
+        dialog --title "Error" --msgbox "Something went wrong with installation. Check mabs.log file and try to fix the problem manually. Then restart the script." 10 40
         exit 1
 fi
 dialog --title "Packages installed." --msgbox "Everything went right. Moving to the next step." 10 30
+

@@ -28,6 +28,8 @@ if id -u $username &> /dev/null; then
         if [[ $? == 1 ]]; then
                 exit 0 
         fi
+else
+        useradd -m -g users -G wheel -s /bin/bash $username
 fi
 
 dialog --title "We have 2 options..." --yesno "You've done your part, are you sure to make the installation?" 10 30
@@ -44,6 +46,6 @@ fi
 dialog --title "Installing yay" --infobox "Installing yay AUR package manager." 10 30
 git clone https://aur.archlinux.org/yay.git
 cd yay
-sudo -u makepkg -si &> /dev/null
+sudo -u $username makepkg -si &> /dev/null
 
 

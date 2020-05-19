@@ -1,4 +1,7 @@
 #!/bin/bash
+
+needPkgs="bspwm sxhkd xorg xorg-xinit firefox"
+
 if pacman -Qqi dialog >> /dev/null; then
         sleep 1;
 else
@@ -33,10 +36,14 @@ if [[ $? == 1 ]]; then
 fi
 
 dialog --title "Installation" --infobox "Installing needed packages via pacman. Just wait." 10 40
-pacman -S --noconfirm bspwm sxhkd xorg xorg-xinit firefox &> mabs.log 
+pacman -S --noconfirm $needPkgs &> mabs.log 
 if [[ $? == 1 ]]; then
         dialog --title "Error" --msgbox "Something went wrong with installation. Check mabs.log file and try to fix the problem manually. Then restart the script." 10 40
         exit 1
 fi
-dialog --title "Packages installed." --msgbox "Everything went right. Moving to the next step." 10 30
+dialog --title "Installing yay" --infobox "Installing yay AUR package manager." 10 30
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si &> /dev/null
+
 

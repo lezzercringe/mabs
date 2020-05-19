@@ -1,5 +1,6 @@
 #!/bin/bash
 if pacman -Qqi dialog >> /dev/null; then
+        sleep 1;
 else
         pacman -Sq --noconfirm dialog >> /dev/null
         if [ $? == 0 ]; then

@@ -23,7 +23,13 @@ echo $username
 
 if id -u $username &> /dev/null; then
         dialog --title "Warning!" --yesno "User $username exists! Are you sure to install?" 10 40
-        echo $?
+        if [[ $? == 1 ]]; then
+                exit 0 
+        fi
 fi
 
+dialog --title "We have 2 options..." --yesno "You've done your part, are you sure to make the installation?" 10 30
+if [[ $? == 1 ]]; then
+        echo "See you next time. Good luck."
+fi
 

@@ -33,11 +33,11 @@ if [[ $? == 1 ]]; then
         echo "See you next time. Good luck."
 fi
 
-echo "Installing needed packages... Just wait a couple of minutes. You can see the process on tty2."
+echo "Installing needed packages... Just wait a couple of minutes. " 
 sleep 5;
 pacman -S bspwm sxhkd xorg xorg-xinit firefox > /dev/pts/2
 if [[ $? == 1 ]]; then
-        echo "Something went wrong with installation. Check tty2 and try to fix the problem manually. Then restart the script."
+        echo "Something went wrong with installation. Check mabs.log file and try to fix the problem manually. Then restart the script."
         exit 1
 fi
-dialog --title "Packages installed." --msg-box "Everything went right. Moving to the next step."
+dialog --title "Packages installed." --msgbox "Everything went right. Moving to the next step." 10 30

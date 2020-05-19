@@ -35,7 +35,7 @@ fi
 
 echo "Installing needed packages... Just wait a couple of minutes. " 
 sleep 5;
-pacman -S bspwm sxhkd xorg xorg-xinit firefox > /dev/pts/2
+pacman -S bspwm sxhkd xorg xorg-xinit firefox > mabs.log 
 if [[ $? == 1 ]]; then
         echo "Something went wrong with installation. Check mabs.log file and try to fix the problem manually. Then restart the script."
         exit 1

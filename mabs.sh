@@ -44,8 +44,7 @@ if [[ $? == 1 ]]; then
         exit 1
 fi
 dialog --title "Installing yay" --infobox "Installing yay AUR package manager." 10 30
-git clone https://aur.archlinux.org/yay.git
-cd yay
-sudo -u $username makepkg -si &> /dev/null
+sudo -u $username git clone https://aur.archlinux.org/yay.git /home/$username/
+sudo -u $username makepkg -si /home/alex/yay/ &> /dev/null
 
 
